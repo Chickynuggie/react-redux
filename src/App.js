@@ -20,17 +20,20 @@ let App = (state, dispatch) => {
     id
   });
 
-  console.log('todos:', state.todos);
+  const updateProgress = () =>  state.dispatch({
+    type: 'UPDATE_PROGRESS'
+  });
+
   return (
     <div className="App">
-        <input type="text" placeholder="enter todo" id="newTodo" />
-        <input type="button" value="add todo" onClick={()=> {addTodo(document.getElementById('newTodo').value)}} />
+      PROGRESS: <br /><progress max={state.todos.length} value={state.progress} ></progress><br />
+      <input type="text" placeholder="enter todo" id="newTodo" />
+      <input type="button" value="add todo" onClick={() => { addTodo(document.getElementById('newTodo').value) }} />
       <ul>
         {
           state.todos.map((todo) =>
-            <li key={todo.id} id={todo.id}>
-             <span onClick={()=> {toggleTodo(todo.id)}}> {todo.text} </span>
-             <a href="#" onClick={()=> {removeTodo(todo.id)}}>X</a>
+            <li key={todo.id} id={todo.id} className={'task-completion-' + todo.done}>
+              {todo.text} <a href="#" onClick={() => { removeTodo(todo.id); updateProgress(); }}>X</a> <a href="#" onClick={() => { toggleTodo(todo.id); updateProgress(); }}>toggle</a>
             </li>
           )
         }
@@ -41,7 +44,8 @@ let App = (state, dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    todos: state.todos
+    todos: state.todos,
+    progress: state.progress
   }
 }
 

@@ -8,7 +8,7 @@ import App from './App';
 import './index.css';
 
 let store = createStore(reducer,
-  { todos: [{ text: 'git gud', id: Date.now(), done: false }] },
+  { todos: [{ text: 'git gud', id: Date.now(), done: false }], progress: 0 },
   applyMiddleware(
     thunkMiddleware
   ));
@@ -19,7 +19,6 @@ store.dispatch({
   done: false,
   text: 'read all the stuff!'
 });
-
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,0 +1,12 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "text": "Check Todo"
+    },
+    {
+      "id": 2,
+      "text": "New Todo"
+    }
+  ]
+}
