@@ -1,40 +1,44 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './App.css';
+import '../node_modules/font-awesome/css/font-awesome.css';
+import { addTodo, removeTodo, toggleTodo, updateProgress } from './actions/actions.js'
+import ToDo from './components/todoitem.js'
 
-let App = (state, dispatch) => {
+let App = (store) => {
 
-  const addTodo = (text) => state.dispatch({
-    type: 'ADD_TODO',
-    id: Date.now(),
-    text
-  });
+  const dispatch = store.dispatch;
 
-  const removeTodo = (id) => state.dispatch({
-    type: 'REMOVE_TODO',
-    id
-  });
+  const remove = (todoId) => {
+    dispatch(removeTodo(todoId));
+  }
 
-  const toggleTodo = (id) => state.dispatch({
-    type: 'TOGGLE_TODO',
-    id
-  });
+  const toggle = (todoId) => {
+    dispatch(toggleTodo(todoId));
+  }
 
-  const updateProgress = () =>  state.dispatch({
-    type: 'UPDATE_PROGRESS'
-  });
+  const update = () => {
+    dispatch(updateProgress());
+  }
 
   return (
     <div className="App">
-      PROGRESS: <br /><progress max={state.todos.length} value={state.progress} ></progress><br />
+      <h1>TO-DO list <i className="fa fa-list" aria-hidden="true"></i></h1>
+      <h2>PROGRESS:</h2> <br /><progress max={store.todos.length} value={store.progress} ></progress><br />
       <input type="text" placeholder="enter todo" id="newTodo" />
-      <input type="button" value="add todo" onClick={() => { addTodo(document.getElementById('newTodo').value) }} />
+      <input type="button" value="add todo" onClick={() => { dispatch(addTodo(document.getElementById('newTodo').value)) }} />
       <ul>
         {
-          state.todos.map((todo) =>
-            <li key={todo.id} id={todo.id} className={'task-completion-' + todo.done}>
-              {todo.text} <a href="#" onClick={() => { removeTodo(todo.id); updateProgress(); }}>X</a> <a href="#" onClick={() => { toggleTodo(todo.id); updateProgress(); }}>toggle</a>
-            </li>
+          store.todos.map((todo) =>
+            <ToDo
+              key={todo.id}
+              id={todo.id}
+              todo={todo.text}
+              completed={todo.done}
+              remove={remove}
+              toggle={toggle}
+              update={update}
+            />
           )
         }
       </ul>
