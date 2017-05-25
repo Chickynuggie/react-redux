@@ -18,4 +18,19 @@ const updateProgress = () => ({
     type: 'UPDATE_PROGRESS'
 })
 
-export { addTodo, removeTodo, toggleTodo, updateProgress };
+const editTodo = (todo) => ({
+    type: 'EDIT_TODO',
+    todo
+})
+
+const closeEditform = () => ({
+    type: 'CLOSE_EDITFORM'
+})
+
+const saveTodo = (id, newText) => ({
+    type: 'SAVE_TODO',
+    id,
+    newText
+})
+
+export { addTodo, removeTodo, toggleTodo, updateProgress, editTodo, closeEditform, saveTodo };

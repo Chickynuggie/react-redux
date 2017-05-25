@@ -8,7 +8,11 @@ import App from './App';
 import './index.css';
 
 let store = createStore(reducer,
-  { todos: [{ text: 'git gud', id: Date.now(), done: false }], progress: 0 },
+  {
+    todos: [{ text: 'git gud', id: Date.now(), done: false }],
+    progress: 0,
+    editing: false
+  },
   applyMiddleware(
     thunkMiddleware
   ));

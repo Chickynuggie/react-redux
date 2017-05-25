@@ -13,14 +13,34 @@ const reducer = (state = {}, action) => {
                 todos: state.todos.map((todo) => {
                     if (todo.id === action.id) {
                         return { ...todo, done: !todo.done }
-                    }else {
+                    } else {
                         return todo
                     }
                 })
             });
         case 'UPDATE_PROGRESS':
-           return Object.assign({}, state, {
-                progress : state.todos.filter((todo) => todo.done).length
+            return Object.assign({}, state, {
+                progress: state.todos.filter((todo) => todo.done).length
+            });
+        case 'EDIT_TODO':
+            return Object.assign({}, state, {
+                editing: action.todo
+            });
+        case 'CLOSE_EDITFORM':
+            return Object.assign({}, state, {
+                editing: false
+            });
+        case 'SAVE_TODO':
+            return Object.assign({}, state, {
+                editing: false,
+                todos: state.todos.map((todo) => {
+                    if (todo.id === action.id) {
+                        console.log(action.newText);
+                        return { ...todo, text: action.newText }
+                    } else {
+                        return todo
+                    }
+                })
             });
 
         default:
