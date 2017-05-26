@@ -36,7 +36,7 @@ const reducer = (state = {}, action) => {
                 todos: state.todos.map((todo) => {
                     if (todo.id === action.id) {
                         console.log(action.newText);
-                        return { ...todo, text: action.newText }
+                        return { ...todo, text: action.newText, description: action.newDesc }
                     } else {
                         return todo
                     }

@@ -27,10 +27,11 @@ const closeEditform = () => ({
     type: 'CLOSE_EDITFORM'
 })
 
-const saveTodo = (id, newText) => ({
+const saveTodo = (id, newText, newDesc) => ({
     type: 'SAVE_TODO',
     id,
-    newText
+    newText,
+    newDesc
 })
 
 export { addTodo, removeTodo, toggleTodo, updateProgress, editTodo, closeEditform, saveTodo };

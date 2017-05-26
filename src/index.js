@@ -9,7 +9,7 @@ import './index.css';
 
 let store = createStore(reducer,
   {
-    todos: [{ text: 'git gud', id: Date.now(), done: false }],
+    todos: [{ text: 'git gud', id: Date.now(), done: false, description: 'here comes dat boi' }],
     progress: 0,
     editing: false
   },

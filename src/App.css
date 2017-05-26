@@ -1,7 +1,7 @@
 /*general rules*/
 
 body {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(lightblue), to(snow));
+  background: -webkit-gradient(linear, left top, left bottom, from(lightblue), to(snow));
   height: 1200px;
 }
 
@@ -26,6 +26,11 @@ h1 {
   margin-bottom: 20px;
 }
 
+h3 {
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
 i {
   margin: 10px;
 }
@@ -36,6 +41,10 @@ a {
 
 a:visited {
   text-decoration: none;
+}
+
+textarea {
+  font-size: 20px;
 }
 
 /*todo status classes*/
@@ -72,8 +81,30 @@ progress[value]::-webkit-progress-value {
   border-radius: 5px;
 }
 
-/* utility class */
+/* utility classes */
 
 .float-right {
   float: right;
 }
+
+/* modal editform */
+
+.modal-editform {
+  position: fixed;
+  top: 15%;
+  left: 30%;
+  z-index: 9999;
+  padding: 150px;
+  border: 2px solid grey;
+  border-radius: 35px;
+  background: -webkit-gradient(linear, left top, left bottom, from(lightblue), to(snow));
+}
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(black), to(gray));
+}
+
+

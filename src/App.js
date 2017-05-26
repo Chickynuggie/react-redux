@@ -30,8 +30,8 @@ let App = (store) => {
     dispatch(closeEditform());
   }
 
-  const saveItem = (id, newText) => {
-    dispatch(saveTodo(id, newText));
+  const saveItem = (id, newText, newDesc) => {
+    dispatch(saveTodo(id, newText, newDesc));
   }
 
   if (store.editing) {
