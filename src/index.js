@@ -9,9 +9,33 @@ import './index.css';
 
 let store = createStore(reducer,
   {
-    todos: [{ text: 'git gud', id: Date.now(), done: false, description: 'here comes dat boi' }],
+    todos: [{
+      text: 'git gud',
+      id: Date.now(),
+      done: false,
+      description: 'here comes dat boi',
+      category: '0'
+    },
+    {
+      text: 'ez egy csecsemő',
+      id: '13',
+      done: false,
+      description: '*sigh* boi',
+      category: '1'
+    }],
+    categories: [{
+        name: 'csecsemok',
+        id: '0',
+        parent: false
+    },
+    {
+        name: 'bolgárok',
+        id: '1',
+        parent: false
+    }],
     progress: 0,
-    editing: false
+    editing: false,
+    activeCategory: '0'
   },
   applyMiddleware(
     thunkMiddleware
@@ -19,9 +43,10 @@ let store = createStore(reducer,
 
 store.dispatch({
   type: 'ADD_TODO',
-  id: Date.now() + 1,
+  id: Date.now(),
   done: false,
-  text: 'read all the stuff!'
+  text: 'read all the stuff!',
+  category: '0'
 });
 
 ReactDOM.render(

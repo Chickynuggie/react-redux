@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ToDo from './components/todoitem.js'
 
 class Category extends Component {
 
@@ -7,22 +6,14 @@ class Category extends Component {
 
     render() {
         return (
-
-            <ul>
-                {
-                    store.todos.map((todo) =>
-                        <ToDo
-                            key={todo.id}
-                            id={todo.id}
-                            todo={todo.text}
-                            completed={todo.done}
-                            remove={remove}
-                            toggle={toggle}
-                            update={update}
-                        />
-                    )
-                }
-            </ul>
+            <div>
+                <li>
+                    {this.props.name}
+                    <a  onClick={() => { this.props.setActiveCategory(this.props.id); }}><i className="fa fa-chevron-circle-down" aria-hidden="true"></i></a>
+                    <a><i className="fa fa-plus-circle" aria-hidden="true"></i></a>
+                    <a onClick={() => { this.props.remove(this.props.id, this.props.parent); this.props.update(); }}><i className="fa fa-trash" aria-hidden="true"></i></a>
+                </li>
+            </div>
         )
     }
 }

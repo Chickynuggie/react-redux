@@ -15,7 +15,7 @@ li {
   cursor: pointer;
   font-size: 1.3rem;
   border-bottom: 1px solid gray;
-  max-width: 200px;
+  max-width: 250px;
   text-transform: uppercase;
   margin-bottom: 10px;
   font-weight: bold;
@@ -87,6 +87,10 @@ progress[value]::-webkit-progress-value {
   float: right;
 }
 
+.float-left {
+  float: left;
+}
+
 /* modal editform */
 
 .modal-editform {
@@ -107,4 +111,8 @@ progress[value]::-webkit-progress-value {
   background: -webkit-gradient(linear, left top, left bottom, from(black), to(gray));
 }
 
+.todo-list {
+  margin-right: 30%;
+  margin-top: 2%;
+}
 

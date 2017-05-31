@@ -1,7 +1,10 @@
-const addTodo = (text) => ({
+/* todoitem actions */
+
+const addTodo = (text, category) => ({
     type: 'ADD_TODO',
     id: Date.now(),
-    text
+    text,
+    category
 });
 
 const removeTodo = (id) => ({
@@ -14,17 +17,9 @@ const toggleTodo = (id) => ({
     id
 });
 
-const updateProgress = () => ({
-    type: 'UPDATE_PROGRESS'
-})
-
 const editTodo = (todo) => ({
     type: 'EDIT_TODO',
     todo
-})
-
-const closeEditform = () => ({
-    type: 'CLOSE_EDITFORM'
 })
 
 const saveTodo = (id, newText, newDesc) => ({
@@ -34,4 +29,33 @@ const saveTodo = (id, newText, newDesc) => ({
     newDesc
 })
 
-export { addTodo, removeTodo, toggleTodo, updateProgress, editTodo, closeEditform, saveTodo };
+/* category actions */
+
+const addCategory = (text) => ({
+    type: 'ADD_CATEGORY',
+    id: Date.now(),
+    parent,
+    text
+});
+
+const removeCategory = (id) => ({
+    type: 'REMOVE_CATEGORY',
+    id
+});
+
+const setActiveCategory = (id) => ({
+    type: 'SET_ACTIVE_CATEGORY',
+    id
+});
+
+/* other actions */
+
+const updateProgress = () => ({
+    type: 'UPDATE_PROGRESS'
+})
+
+const closeEditform = () => ({
+    type: 'CLOSE_EDITFORM'
+})
+
+export { addTodo, removeTodo, toggleTodo, updateProgress, editTodo, closeEditform, saveTodo, addCategory, removeCategory, setActiveCategory };

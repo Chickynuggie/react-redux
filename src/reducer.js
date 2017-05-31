@@ -1,8 +1,21 @@
 const reducer = (state = {}, action) => {
     switch (action.type) {
+        case 'ADD_CATEGORY':
+            return Object.assign({}, state, {
+                categories: [...state.categories, { text: action.text, id: action.id, parent: action.parent }]
+            });
+        case 'REMOVE_CATEGORY':
+            return Object.assign({}, state, {
+                categories: state.categories.filter(category => category.id !== action.id),
+                todos: state.todos.filter(todo => todo.category !== action.id)
+            });
+        case 'SET_ACTIVE_CATEGORY':
+            return Object.assign({}, state, {
+               activeCategory: action.id
+            });
         case 'ADD_TODO':
             return Object.assign({}, state, {
-                todos: [...state.todos, { text: action.text, id: action.id, done: false }]
+                todos: [...state.todos, { text: action.text, id: action.id, done: false, category: action.category }]
             });
         case 'REMOVE_TODO':
             return Object.assign({}, state, {
