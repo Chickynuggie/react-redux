@@ -1,11 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reducer from './reducer.js'
+import { combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import App from './App';
 import './index.css';
+import undoable from 'redux-undo';
+
+combineReducers({
+  reducer: undoable(reducer, {
+    limit: 10
+  })
+})
 
 let store = createStore(reducer,
   {
@@ -48,6 +56,8 @@ store.dispatch({
   text: 'read all the stuff!',
   category: '0'
 });
+
+console.log(store.getState());
 
 ReactDOM.render(
   <Provider store={store}>

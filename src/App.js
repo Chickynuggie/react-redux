@@ -10,6 +10,7 @@ import {
 import ToDo from './components/todoitem.js'
 import EditForm from './components/editform.js';
 import Category from './components/category.js';
+import { ActionCreators } from 'redux-undo';
 
 let App = (store) => {
 
@@ -59,6 +60,8 @@ let App = (store) => {
     return (
       <div className="App">
         <h1>TO-DO list <i className="fa fa-list" aria-hidden="true"></i></h1>
+        <i className="fa fa-undo float-right" onClick={() => {dispatch(ActionCreators.undo());}} aria-hidden="true">undo</i>
+        <i className="fa fa-repeat float-right" onClick={() => {dispatch(ActionCreators.redo());}} aria-hidden="true">redo</i>
         <h2>PROGRESS:</h2> <br /><progress max={store.todos.length} value={store.progress} ></progress><br />
         <div className="float-right todo-list">
           <input type="text" placeholder="enter todo" id="newTodo" />
