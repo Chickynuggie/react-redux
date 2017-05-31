@@ -24,7 +24,7 @@ let store = createStore(reducer,
       category: '1'
     }],
     categories: [{
-        name: 'csecsemok',
+        name: 'csecsemők',
         id: '0',
         parent: false
     },

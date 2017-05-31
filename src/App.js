@@ -74,11 +74,10 @@ let App = (store) => {
                   update={update}
                   edit={editTodoItem}
                 />
-
               )}
           </ul>
         </div>
-        <div className="float-left">
+        <div className="float-left category-wrapper">
           <input type="text" placeholder="enter new main category" id="newCateg" />
           <input
             type="button"
@@ -86,17 +85,18 @@ let App = (store) => {
             onClick={() => { dispatch(addCategory(document.getElementById('newCateg').value, false)) }}
           />
           <ul>
-            {
-              store.categories.map((category) =>
-                <Category
-                  id={category.id}
-                  key={category.id}
-                  name={category.name}
-                  remove={removeCateg}
-                  setActiveCategory={setActiveCateg}
-                  parent={category.parent}
-                  update={update}
-                />
+            {store.categories.filter(category => category.parent === false).map((category) =>
+                <div>
+                  <Category
+                    id={category.id}
+                    key={category.id}
+                    name={category.name}
+                    remove={removeCateg}
+                    setActiveCategory={setActiveCateg}
+                    parent={category.parent}
+                    update={update}
+                  />
+                </div>
               )
             }
           </ul>
