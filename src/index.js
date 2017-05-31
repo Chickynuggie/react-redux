@@ -57,8 +57,6 @@ store.dispatch({
   category: '0'
 });
 
-console.log(store.getState());
-
 ReactDOM.render(
   <Provider store={store}>
     <App />
