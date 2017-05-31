@@ -2,9 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import '../node_modules/font-awesome/css/font-awesome.css';
-import { addTodo, removeTodo, toggleTodo, updateProgress,
-     editTodo, closeEditform, saveTodo,
-     addCategory, removeCategory, setActiveCategory } from './actions/actions.js'
+import {
+  addTodo, removeTodo, toggleTodo, updateProgress,
+  editTodo, closeEditform, saveTodo,
+  addCategory, removeCategory, setActiveCategory
+} from './actions/actions.js'
 import ToDo from './components/todoitem.js'
 import EditForm from './components/editform.js';
 import Category from './components/category.js';
@@ -37,22 +39,12 @@ let App = (store) => {
     dispatch(saveTodo(id, newText, newDesc));
   }
 
-  const addCategory = (text, categId, parent) =>{
-    dispatch(addCategory(text, categId, parent));
-  }
-
   const removeCateg = (categId, parent) => {
     dispatch(removeCategory(categId, parent));
   }
 
   const setActiveCateg = (categId) => {
     dispatch(setActiveCategory(categId));
-  }
-
-  const filterTodosById = (todo) =>{
-    if(todo.id === store.activeCategory) {
-      return todo;
-    }
   }
 
   if (store.editing) {
@@ -70,24 +62,30 @@ let App = (store) => {
         <h2>PROGRESS:</h2> <br /><progress max={store.todos.length} value={store.progress} ></progress><br />
         <div className="float-right todo-list">
           <input type="text" placeholder="enter todo" id="newTodo" />
-          <input type="button" value="add todo" onClick={() => { dispatch(addTodo(document.getElementById('newTodo').value, store.activeCategory)) }} />
+          <input type="button" value="add todo" onClick={() => { dispatch(addTodo(document.getElementById('newTodo').value, store.activeCategory), updateProgress()) }} />
           <ul>
             {
               store.todos.filter(todo => todo.category === store.activeCategory).map((todo) =>
-                  <ToDo
-                    key={todo.id}
-                    todo={todo}
-                    remove={removeTodoItem}
-                    toggle={toggleCompletion}
-                    update={update}
-                    edit={editTodoItem}
-                  />
+                <ToDo
+                  key={todo.id}
+                  todo={todo}
+                  remove={removeTodoItem}
+                  toggle={toggleCompletion}
+                  update={update}
+                  edit={editTodoItem}
+                />
 
               )}
           </ul>
         </div>
         <div className="float-left">
-           <ul>
+          <input type="text" placeholder="enter new main category" id="newCateg" />
+          <input
+            type="button"
+            value="add category"
+            onClick={() => { dispatch(addCategory(document.getElementById('newCateg').value, false)) }}
+          />
+          <ul>
             {
               store.categories.map((category) =>
                 <Category
@@ -114,7 +112,7 @@ const mapStateToProps = (state) => {
     categories: state.categories,
     progress: state.progress,
     editing: state.editing,
-    activeCategory:state.activeCategory
+    activeCategory: state.activeCategory
   }
 }
 

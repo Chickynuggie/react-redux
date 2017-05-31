@@ -2,7 +2,7 @@ const reducer = (state = {}, action) => {
     switch (action.type) {
         case 'ADD_CATEGORY':
             return Object.assign({}, state, {
-                categories: [...state.categories, { text: action.text, id: action.id, parent: action.parent }]
+                categories: [...state.categories, { name: action.text, id: action.id, parent: action.parent }]
             });
         case 'REMOVE_CATEGORY':
             return Object.assign({}, state, {

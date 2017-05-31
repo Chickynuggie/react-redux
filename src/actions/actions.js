@@ -31,11 +31,11 @@ const saveTodo = (id, newText, newDesc) => ({
 
 /* category actions */
 
-const addCategory = (text) => ({
+const addCategory = (text, parent) => ({
     type: 'ADD_CATEGORY',
     id: Date.now(),
-    parent,
-    text
+    text,
+    parent
 });
 
 const removeCategory = (id) => ({

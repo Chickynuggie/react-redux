@@ -43,7 +43,7 @@ let store = createStore(reducer,
 
 store.dispatch({
   type: 'ADD_TODO',
-  id: Date.now(),
+  id: Date.now() +1,
   done: false,
   text: 'read all the stuff!',
   category: '0'
