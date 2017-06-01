@@ -14,7 +14,6 @@ import { ActionCreators } from 'redux-undo';
 import { Router, Route, Switch } from 'react-router'
 
 let App = (store) => {
-
   const dispatch = store.dispatch;
 
   const removeTodoItem = (todoId) => {
@@ -90,7 +89,6 @@ let App = (store) => {
           />
           <ul>
             {store.categories.filter(category => category.parent === false).map((category) =>
-                <div>
                   <Category
                     id={category.id}
                     key={category.id}
@@ -100,7 +98,6 @@ let App = (store) => {
                     parent={category.parent}
                     update={update}
                   />
-                </div>
               )
             }
           </ul>
@@ -112,11 +109,11 @@ let App = (store) => {
 
 const mapStateToProps = (state) => {
   return {
-    todos: state.todos,
-    categories: state.categories,
-    progress: state.progress,
-    editing: state.editing,
-    activeCategory: state.activeCategory
+    todos: state.present.todos,
+    categories: state.present.categories,
+    progress: state.present.progress,
+    editing: state.present.editing,
+    activeCategory: state.present.activeCategory
   }
 }
 

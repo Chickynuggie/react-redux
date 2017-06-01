@@ -1,4 +1,32 @@
-const reducer = (state = {}, action) => {
+const reducer = (state = {
+    todos: [{
+      text: 'git gud',
+      id: Date.now(),
+      done: false,
+      description: 'here comes dat boi',
+      category: '0'
+    },
+    {
+      text: 'ez egy csecsemő',
+      id: '13',
+      done: false,
+      description: '*sigh* boi',
+      category: '1'
+    }],
+    categories: [{
+        name: 'csecsemők',
+        id: '0',
+        parent: false
+    },
+    {
+        name: 'bolgárok',
+        id: '1',
+        parent: false
+    }],
+    progress: 0,
+    editing: false,
+    activeCategory: '0'
+  }, action) => {
     switch (action.type) {
         case 'ADD_CATEGORY':
             return Object.assign({}, state, {
@@ -48,7 +76,6 @@ const reducer = (state = {}, action) => {
                 editing: false,
                 todos: state.todos.map((todo) => {
                     if (todo.id === action.id) {
-                        console.log(action.newText);
                         return { ...todo, text: action.newText, description: action.newDesc }
                     } else {
                         return todo
