@@ -20,11 +20,12 @@ let App = (store) => {
     dispatch(removeTodo(todoId));
   }
 
-  const toggleCompletion = (todoId) => {
-    dispatch(toggleTodo(todoId));
+  const update = () => {
+    dispatch(updateProgress());
   }
 
-  const update = () => {
+  const toggleCompletion = (todoId) => {
+    dispatch(toggleTodo(todoId));
     dispatch(updateProgress());
   }
 
@@ -60,12 +61,12 @@ let App = (store) => {
     return (
       <div className="App">
         <h1>TO-DO list <i className="fa fa-list" aria-hidden="true"></i></h1>
-        <i className="fa fa-undo float-right" onClick={() => {dispatch(ActionCreators.undo());}} aria-hidden="true">undo</i>
-        <i className="fa fa-repeat float-right" onClick={() => {dispatch(ActionCreators.redo());}} aria-hidden="true">redo</i>
+        <i className="fa fa-undo float-right" onClick={() => { dispatch(ActionCreators.undo()); }} aria-hidden="true">undo</i>
+        <i className="fa fa-repeat float-right" onClick={() => { dispatch(ActionCreators.redo()); }} aria-hidden="true">redo</i>
         <h2>PROGRESS:</h2> <br /><progress max={store.todos.length} value={store.progress} ></progress><br />
         <div className="float-right todo-list">
           <input type="text" placeholder="enter todo" id="newTodo" />
-          <input type="button" value="add todo" onClick={() => { dispatch(addTodo(document.getElementById('newTodo').value, store.activeCategory), updateProgress()) }} />
+          <input type="button" value="add todo" onClick={() => { dispatch(addTodo(document.getElementById('newTodo').value, store.activeCategory)) }} />
           <ul>
             {
               store.todos.filter(todo => todo.category === store.activeCategory).map((todo) =>
@@ -74,10 +75,10 @@ let App = (store) => {
                   todo={todo}
                   remove={removeTodoItem}
                   toggle={toggleCompletion}
-                  update={update}
                   edit={editTodoItem}
                 />
-              )}
+              )
+            }
           </ul>
         </div>
         <div className="float-left category-wrapper">
@@ -88,16 +89,16 @@ let App = (store) => {
             onClick={() => { dispatch(addCategory(document.getElementById('newCateg').value, false)) }}
           />
           <ul>
-            {store.categories.filter(category => category.parent === false).map((category) =>
-                  <Category
-                    id={category.id}
-                    key={category.id}
-                    name={category.name}
-                    remove={removeCateg}
-                    setActiveCategory={setActiveCateg}
-                    parent={category.parent}
-                    update={update}
-                  />
+            {
+              store.categories.filter(category => category.parent === false).map((category) =>
+                <Category
+                  id={category.id}
+                  key={category.id}
+                  name={category.name}
+                  remove={removeCateg}
+                  setActiveCategory={setActiveCateg}
+                  parent={category.parent}
+                />
               )
             }
           </ul>

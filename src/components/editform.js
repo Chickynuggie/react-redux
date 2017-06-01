@@ -11,7 +11,7 @@ class EditForm extends Component {
                         <h3>title:</h3>
                         <textarea rows="1" cols="50" ref={(title) => { this.title = title }} defaultValue={this.props.todo.text} /><br />
                         <h3>description:</h3>
-                        <textarea rows="10" cols="50" ref={(description) => { this.description = description }} defaultValue={this.props.todo.description} /><br />
+                        <textarea rows="5" cols="50" ref={(description) => { this.description = description }} defaultValue={this.props.todo.description} /><br />
                         <input type="button" value="done" onClick={() => { this.props.save(this.props.todo.id, this.title.value, this.description.value) }} />
                         <input type="button" value="cancel" onClick={() => { this.props.close() }} />
                     </form>

@@ -7,17 +7,21 @@ import { Provider } from 'react-redux';
 import App from './App';
 import './index.css';
 import undoable from 'redux-undo';
+import { excludeAction } from 'redux-undo';
+import { toggleTodo } from './actions/actions.js'
 
-let store = createStore(undoable(reducer, {
-    limit: 10
-  }),
-  applyMiddleware(
-    thunkMiddleware
-  ));
+let store = createStore(
+  undoable(
+    reducer,
+    {
+      filter: excludeAction([toggleTodo]),
+      limit: 10
+    }),
+  applyMiddleware(thunkMiddleware));
 
 store.dispatch({
   type: 'ADD_TODO',
-  id: Date.now() +1,
+  id: Date.now() + 1,
   done: false,
   text: 'read all the stuff!',
   category: '0'

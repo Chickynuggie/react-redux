@@ -30,12 +30,14 @@ const reducer = (state = {
     switch (action.type) {
         case 'ADD_CATEGORY':
             return Object.assign({}, state, {
-                categories: [...state.categories, { name: action.text, id: action.id, parent: action.parent }]
+                categories: [...state.categories, { name: action.text, id: action.id, parent: action.parent }],
+                progress: state.todos.filter((todo) => todo.done).length
             });
         case 'REMOVE_CATEGORY':
             return Object.assign({}, state, {
                 categories: state.categories.filter(category => category.id !== action.id),
-                todos: state.todos.filter(todo => todo.category !== action.id)
+                todos: state.todos.filter(todo => todo.category !== action.id),
+                progress: state.todos.filter((todo) => todo.done).length
             });
         case 'SET_ACTIVE_CATEGORY':
             return Object.assign({}, state, {
@@ -43,13 +45,16 @@ const reducer = (state = {
             });
         case 'ADD_TODO':
             return Object.assign({}, state, {
-                todos: [...state.todos, { text: action.text, id: action.id, done: false, category: action.category }]
+                todos: [...state.todos, { text: action.text, id: action.id, done: false, category: action.category }],
+                progress: state.todos.filter((todo) => todo.done).length
             });
         case 'REMOVE_TODO':
             return Object.assign({}, state, {
-                todos: state.todos.filter(todo => todo.id !== action.id)
+                todos: state.todos.filter(todo => todo.id !== action.id),
+                progress: state.todos.filter((todo) => todo.done).length
             });
         case 'TOGGLE_TODO':
+        console.log(state);
             return Object.assign({}, state, {
                 todos: state.todos.map((todo) => {
                     if (todo.id === action.id) {
