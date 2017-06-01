@@ -8,13 +8,13 @@ import App from './App';
 import './index.css';
 import undoable from 'redux-undo';
 import { excludeAction } from 'redux-undo';
-import { toggleTodo } from './actions/actions.js'
+import { toggleTodo, updateProgress } from './actions/actions.js'
 
 let store = createStore(
   undoable(
     reducer,
     {
-      filter: excludeAction([toggleTodo]),
+      filter: excludeAction([toggleTodo, updateProgress]),
       limit: 10
     }),
   applyMiddleware(thunkMiddleware));

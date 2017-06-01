@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 class EditForm extends Component {
 
     render() {
+        
         return (
             <div className="overlay">
                 <div className="modal-editform">

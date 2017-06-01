@@ -7,19 +7,19 @@ const reducer = (state = {
         category: '0'
     },
     {
-        text: 'ez egy csecsemő',
-        id: '3',
+        text: 'get slick',
+        id: 3,
         done: false,
-        description: '*sigh* boi',
+        description: 'must be slick, must be slippery, must be cool',
         category: '1'
     }],
     categories: [{
-        name: 'csecsemők',
+        name: 'chores',
         id: '0',
         parent: false
     },
     {
-        name: 'bolgárok',
+        name: 'extras',
         id: '1',
         parent: false
     }],
@@ -66,10 +66,6 @@ const reducer = (state = {
         case 'UPDATE_PROGRESS':
             return Object.assign({}, state, {
                 progress: state.todos.filter((todo) => todo.done).length
-            });
-        case 'EDIT_TODO':
-            return Object.assign({}, state, {
-                editing: action.todo
             });
         case 'EDIT_TODO_BY_ID':
             return Object.assign({}, state, {

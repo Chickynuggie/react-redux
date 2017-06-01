@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import './App.css';
 import '../node_modules/font-awesome/css/font-awesome.css';
 import {
-  addTodo, removeTodo, toggleTodo, updateProgress,
-  editTodo, closeEditform, saveTodo,
+  addTodo, removeTodo, toggleTodo,
+  updateProgress, closeEditform, saveTodo,
   addCategory, removeCategory, setActiveCategory,
   editTodoById
 } from './actions/actions.js'
@@ -26,8 +26,8 @@ let App = (store) => {
     dispatch(updateProgress());
   }
 
-  const editTodoItem = (todo) => {
-    dispatch(editTodo(todo));
+  const editTodo = (id) => {
+    dispatch(editTodoById(id));
   }
 
   const closeEditing = () => {
@@ -63,7 +63,6 @@ let App = (store) => {
                 todo={todo}
                 remove={removeTodoItem}
                 toggle={toggleCompletion}
-                edit={editTodoItem}
               />
             )
           }
@@ -98,7 +97,7 @@ let App = (store) => {
 
     let todo = store.editing;
     if (!todo) {
-      store.dispatch(editTodoById(match.params.id));
+      editTodo(parseInt(match.params.id, 10));
       todo = store.editing;
     }
 
@@ -116,7 +115,6 @@ let App = (store) => {
       <HashRouter>
         <div>
           <Route path="/" component={application} />
-          <Route path="/edit" component={editForm} />
           <Route path="/edit/:id" component={editForm} />
         </div>
       </HashRouter>
