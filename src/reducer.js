@@ -54,7 +54,6 @@ const reducer = (state = {
                 progress: state.todos.filter((todo) => todo.done).length
             });
         case 'TOGGLE_TODO':
-        console.log(state);
             return Object.assign({}, state, {
                 todos: state.todos.map((todo) => {
                     if (todo.id === action.id) {

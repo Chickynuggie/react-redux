@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class ToDo extends Component {
 
@@ -8,7 +9,7 @@ class ToDo extends Component {
                 {this.props.todo.text} <br />
                 <a href="#" onClick={() => { this.props.remove(this.props.todo.id); }}><i className="fa fa-trash" aria-hidden="true"></i></a>
                 <a href="#" onClick={() => { this.props.toggle(this.props.todo.id); }}><i className="fa fa-check-square" aria-hidden="true"></i></a>
-                <a href="#" onClick={() => { this.props.edit(this.props.todo); }}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <Link to="/edit"><i onClick={() => { this.props.edit(this.props.todo); }} className="fa fa-pencil-square-o" aria-hidden="true"></i></Link>
             </li>
         )
     }
