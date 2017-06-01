@@ -22,6 +22,11 @@ const editTodo = (todo) => ({
     todo
 })
 
+const editTodoById = (id) => ({
+    type: 'EDIT_TODO_BY_ID',
+    id
+})
+
 const saveTodo = (id, newText, newDesc) => ({
     type: 'SAVE_TODO',
     id,
@@ -58,4 +63,16 @@ const closeEditform = () => ({
     type: 'CLOSE_EDITFORM'
 })
 
-export { addTodo, removeTodo, toggleTodo, updateProgress, editTodo, closeEditform, saveTodo, addCategory, removeCategory, setActiveCategory };
+export {
+    addTodo,
+    removeTodo,
+    toggleTodo,
+    updateProgress,
+    editTodo,
+    closeEditform,
+    saveTodo,
+    addCategory,
+    removeCategory,
+    setActiveCategory,
+    editTodoById
+};

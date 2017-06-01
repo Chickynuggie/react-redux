@@ -5,23 +5,20 @@ import '../node_modules/font-awesome/css/font-awesome.css';
 import {
   addTodo, removeTodo, toggleTodo, updateProgress,
   editTodo, closeEditform, saveTodo,
-  addCategory, removeCategory, setActiveCategory
+  addCategory, removeCategory, setActiveCategory,
+  editTodoById
 } from './actions/actions.js'
 import ToDo from './components/todoitem.js'
 import EditForm from './components/editform.js';
 import Category from './components/category.js';
 import { ActionCreators } from 'redux-undo';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 
 let App = (store) => {
   const dispatch = store.dispatch;
 
   const removeTodoItem = (todoId) => {
     dispatch(removeTodo(todoId));
-  }
-
-  const update = () => {
-    dispatch(updateProgress());
   }
 
   const toggleCompletion = (todoId) => {
@@ -97,13 +94,22 @@ let App = (store) => {
     </div>
   );
 
-  const editForm = () => (
-    <EditForm
-      todo={store.editing}
-      close={closeEditing}
-      save={saveItem}
-    />
-  );
+  const editForm = ({ match }) => {
+
+    let todo = store.editing;
+    if (!todo) {
+      store.dispatch(editTodoById(match.params.id));
+      todo = store.editing;
+    }
+
+    return (
+      <EditForm
+        todo={todo}
+        close={closeEditing}
+        save={saveItem}
+      />
+    )
+  };
 
   return (
     <div>
@@ -111,6 +117,7 @@ let App = (store) => {
         <div>
           <Route path="/" component={application} />
           <Route path="/edit" component={editForm} />
+          <Route path="/edit/:id" component={editForm} />
         </div>
       </HashRouter>
     </div>

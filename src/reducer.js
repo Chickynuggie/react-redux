@@ -1,17 +1,17 @@
 const reducer = (state = {
     todos: [{
-      text: 'git gud',
-      id: Date.now(),
-      done: false,
-      description: 'here comes dat boi',
-      category: '0'
+        text: 'git gud',
+        id: Date.now(),
+        done: false,
+        description: 'here comes dat boi',
+        category: '0'
     },
     {
-      text: 'ez egy csecsemő',
-      id: '13',
-      done: false,
-      description: '*sigh* boi',
-      category: '1'
+        text: 'ez egy csecsemő',
+        id: '3',
+        done: false,
+        description: '*sigh* boi',
+        category: '1'
     }],
     categories: [{
         name: 'csecsemők',
@@ -26,7 +26,7 @@ const reducer = (state = {
     progress: 0,
     editing: false,
     activeCategory: '0'
-  }, action) => {
+}, action) => {
     switch (action.type) {
         case 'ADD_CATEGORY':
             return Object.assign({}, state, {
@@ -41,7 +41,7 @@ const reducer = (state = {
             });
         case 'SET_ACTIVE_CATEGORY':
             return Object.assign({}, state, {
-               activeCategory: action.id
+                activeCategory: action.id
             });
         case 'ADD_TODO':
             return Object.assign({}, state, {
@@ -70,6 +70,10 @@ const reducer = (state = {
         case 'EDIT_TODO':
             return Object.assign({}, state, {
                 editing: action.todo
+            });
+        case 'EDIT_TODO_BY_ID':
+            return Object.assign({}, state, {
+                editing: state.todos.filter(todo => todo.id === action.id)[0]
             });
         case 'CLOSE_EDITFORM':
             return Object.assign({}, state, {
